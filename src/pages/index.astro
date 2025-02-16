@@ -1,78 +1,69 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import HorizontalCard from "../components/HorizontalCard.astro";
-import { getCollection } from "astro:content";
-import createSlug from "../lib/createSlug"
-
-const posts = (await getCollection("blog")).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-
-const last_posts = posts.slice(0, 3);
 ---
 
 <BaseLayout sideBarActiveItemID="home">
   <div class="pb-12 mt-5">
-    <div class="text-xl py-1">Hey there 👋</div>
-    <div class="text-5xl font-bold">I'm Manuel Ernesto</div>
-    <div class="text-3xl py-3 font-bold">Software Engineer and Entrepreneur</div>
+    <div class="text-xl py-1">Hola! 👋</div>
+    <div class="text-5xl font-bold">Soy Jorge Ampuero</div>
+    <div class="text-3xl py-3 font-bold">
+      Software Engineer y Full Stack developer
+    </div>
     <div class="py-2">
-      <text class="text-lg">
-        This is <b>Astrofy</b> a free and open-source template for your Personal Portfolio Website built with Astro and TailwindCSS.
-        Create in minutes a website with Blog, CV, Project Section, Store and RSS Feed. I hope you find
-        it useful!
-      </text>
-    </div>
-    <div class="mt-8">
-      <a class="btn" href="https://twitter.com/manuelernestog" target="_blank"> Let's connect!</a>
-      <a href="https://github.com/manuelernestog/astrofy" target="_blank" class="btn btn-outline ml-5">
-        Get This template
-      </a>
+      <p>
+        Soy Jorge Ampuero, ingeniero en computación de la Universidad de Chile y
+        actualmente ocupo el cargo de CTO de <a
+          href="https://lazarillo.app"
+          target="_blank"><b>Lazarillo</b></a
+        > y <a href="https://mapvx.com"><b>MapVX</b></a>, empresas con el
+        propósito de crear soluciones tecnológicas que impacten positivamente la
+        vida de las personas. Desde 2018, he liderado las estrategias
+        tecnológicas de ambas plataformas, enfocándome en la innovación y la
+        accesibilidad.
+      </p>
+      <br />
+      <p>
+        En mi tiempo libre me gusta aprender nuevas tecnologías, por lo que
+        suelo rehacer esta página usando diferentes tecnologías. Actualmente
+        está hecha con Astro y TailwindCSS.
+      </p>
     </div>
   </div>
 
   <div>
-    <div class="text-3xl w-full font-bold mb-2">My last projects {"</>"}</div>
+    <div class="text-3xl w-full font-bold mb-2">Mis últimos proyectos</div>
   </div>
 
   <HorizontalCard
-    title="Demo Project 1"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-    badge="NEW"
+    title="Blog"
+    img="/logo_ghost.webp"
+    desc="Blog para escribir de cosas de la vida, principalmente de tecnología."
+    url="https://blog.ampuero.me"
+    base="https://ghost.org"
   />
   <div class="divider my-0"></div>
   <HorizontalCard
-    title="Demo Project 2"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
+    title="Memos"
+    img="/logo_memos.png"
+    desc="Aplicación para tomar notas y recordatorios."
+    url="https://memos.ampuero.me"
+    base="https://www.usememos.com"
   />
   <div class="divider my-0"></div>
   <HorizontalCard
-    title="Demo Project 3"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-    badge="FOSS"
+    title="Authentik"
+    img="/logo_authentik.svg"
+    desc="Aplicación de Autenticación."
+    url="https://authentik.ampuero.me"
+    base="https://goauthentik.io/"
   />
-
-  <div>
-    <div class="text-3xl w-full font-bold mb-5 mt-10">Latest from blog</div>
-  </div>
-
-  {
-    last_posts.map((post) => (
-      <>
-        <HorizontalCard
-          title={post.data.title}
-          img={post.data.heroImage}
-          desc={post.data.description}
-          url={"/blog/" + createSlug(post.data.title, post.slug)}
-          target="_self"
-          badge={post.data.badge}
-        />
-        <div class="divider my-0" />
-      </>
-    ))
-  }
+  <div class="divider my-0"></div>
+  <HorizontalCard
+    title="Nextcloud"
+    img="/logo_nextcloud.svg"
+    desc="Nube hosteada en mi rpi 5 con ssd de 1TB."
+    url="https://nextcloud.ampuero.me/"
+    base="https://nextcloud.com/"
+  />
 </BaseLayout>

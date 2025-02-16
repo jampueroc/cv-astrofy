@@ -14,13 +14,20 @@ const {
   includeSidebar = true,
   sideBarActiveItemID,
   ogType,
+  theme,
 } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en" data-theme="lofi">
+<html lang="es" data-theme="dark">
   <head>
-    <BaseHead title={title} description={description} image={image} , ogType={ogType} />
+    <BaseHead
+      title={title}
+      description={description}
+      image={image}
+      ,
+      ogType={ogType}
+    />
     {TRANSITION_API && <ViewTransitions />}
   </head>
   <body>

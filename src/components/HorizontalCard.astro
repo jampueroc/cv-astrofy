@@ -1,5 +1,14 @@
 ---
-const { title, img, desc, url, badge, tags, target = "_blank" } = Astro.props;
+const {
+  title,
+  img,
+  desc,
+  url,
+  badge,
+  tags,
+  target = "_blank",
+  base = "",
+} = Astro.props;
 import { Image } from "astro:assets";
 const tag_url = url.split("/").slice(0, -1).join("/") + "/tag";
 ---
@@ -24,6 +33,7 @@ const tag_url = url.split("/").slice(0, -1).join("/") + "/tag";
       <div class="grow w-full">
         <h1 class="text-xl font-bold">
           {title}
+
           {badge && <div class="badge badge-secondary mx-2">{badge}</div>}
         </h1>
         <p class="py-1 text-1xl">{desc}</p>
@@ -41,3 +51,15 @@ const tag_url = url.split("/").slice(0, -1).join("/") + "/tag";
     </div>
   </a>
 </div>
+{
+  base !== "" ? (
+    <a
+      href={base}
+      class="flex items-center justify-center bg-base-100 hover:shadow-xl transition ease-in-out hover:scale-[102%] p-2 rounded-lg"
+    >
+      <b>Ver sitio oficial del proyecto</b>
+    </a>
+  ) : (
+    ""
+  )
+}
