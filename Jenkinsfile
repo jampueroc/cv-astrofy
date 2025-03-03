@@ -7,6 +7,7 @@ pipeline {
 
     environment {
         DEPLOY_PATH = '/var/www/ampuero.me'
+        ROOT_PATH = 'home/jampueroc/jenkins'
     }
 
     stages {
@@ -25,15 +26,13 @@ pipeline {
             }
         }
 
-        stage('Install Dependencies') {
+        stage('Install Dependencies and Build Astro') {
             steps {
-                sh 'cd website && npm ci'
-            }
-        }
-
-        stage('Build Astro') {
-            steps {
-                sh 'cd website && npm run build'
+                sh """
+                cd ${ROOT_PATH}/website
+                npm ci
+                npm run build
+                """
             }
         }
 
@@ -42,7 +41,7 @@ pipeline {
                 script {
                     sh """
                     sudo rm -rf ${DEPLOY_PATH}/*
-                    sudo cp -r website/dist/* ${DEPLOY_PATH}/
+                    sudo cp -r ${ROOT_PATH}/website/dist/* ${DEPLOY_PATH}/
                     """
                 }
             }
@@ -50,7 +49,9 @@ pipeline {
 
         stage('Clean Build') {
             steps {
-                sh 'rm -rf website/dist'
+                sh """
+                rm -rf ${ROOT_PATH}/website/dist
+                """
             }
         }
     }
