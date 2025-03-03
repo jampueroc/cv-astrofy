@@ -7,7 +7,7 @@ pipeline {
 
     environment {
         DEPLOY_PATH = '/var/www/ampuero.me'
-        ROOT_PATH = 'home/jampueroc/jenkins'
+        ROOT_PATH = '/home/jampueroc/jenkins'
     }
 
     stages {
@@ -15,7 +15,7 @@ pipeline {
             steps {
                 script {
                     sh """
-                    cd website
+                    cd ${ROOT_PATH}/website
                     CURRENT_BRANCH=\$(git rev-parse --abbrev-ref HEAD)
                     if [ "\$CURRENT_BRANCH" != "main" ]; then
                         git checkout main
