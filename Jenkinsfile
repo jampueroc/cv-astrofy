@@ -12,19 +12,28 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'git@github.com:jampueroc/cv-astrofy.git' // Cambia por tu repositorio
+                script {
+                    sh """
+                    cd website
+                    CURRENT_BRANCH=\$(git rev-parse --abbrev-ref HEAD)
+                    if [ "\$CURRENT_BRANCH" != "main" ]; then
+                        git checkout main
+                    fi
+                    git pull origin main
+                    """
+                }
             }
         }
 
         stage('Install Dependencies') {
             steps {
-                sh 'npm ci'
+                sh 'cd website && npm ci'
             }
         }
 
         stage('Build Astro') {
             steps {
-                sh 'npm run build'
+                sh 'cd website && npm run build'
             }
         }
 
@@ -33,7 +42,7 @@ pipeline {
                 script {
                     sh """
                     sudo rm -rf ${DEPLOY_PATH}/*
-                    sudo cp -r ./dist/* ${DEPLOY_PATH}/
+                    sudo cp -r website/dist/* ${DEPLOY_PATH}/
                     """
                 }
             }
@@ -41,7 +50,7 @@ pipeline {
 
         stage('Clean Build') {
             steps {
-                sh 'rm -rf ./dist'
+                sh 'rm -rf website/dist'
             }
         }
     }
