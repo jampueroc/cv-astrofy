@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HorizontalCard from "../components/HorizontalCard.astro";
+---
+
+<BaseLayout sideBarActiveItemID="dogs" title="Mis Bebes">
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">Mis bebes</div>
+  </div>
+
+  <div class="pb-12 mt-5">
+    <div class="py-2">
+      <p>
+        Tengo 3 perri-hijos que son: Ruby, Laica y Mateo (Chimuelo). Los 3 son
+        mestizos, y ahora te cuento más detalles de ellos.
+      </p>
+    </div>
+    <HorizontalCard
+      img="/foto_rubi.jpeg"
+      title="Ruby Andrea"
+      desc="Ruby fue la primera perra que tuvimos, mi señora siempre quiso tener animales en la casa, pero como viviamos en un principio en departamento, no teniamos el espacio para uno. Así que cuando compramos nuestra casa, lo primero que hizo fue buscar un can para que nos acompañara y así una prima de la Ale le ofreció una perrita que iba a hacer 'chica'."
+    />
+
+    <HorizontalCard
+      img="/foto_laica.jpeg"
+      title="Laica Emilia"
+      desc="Laica fue una perra que rescatamos luego de que mi cuñado terminara su relación y la ex dejara a la perra con él. Nadie la quería así que nosotros la aceptamos en nuestro hogar."
+    />
+    <HorizontalCard
+      img="/foto_chimuelo.jpeg"
+      title="Mateo (Chimuelo)"
+      desc="Para mi dos perros ya era suficiente para nuestro hogar, pero mi señora quería un varón y en contra de mi voluntad, su familia le 'regaló' un perro, un mestizo salchicha. El terreneitor, la máquina de cagadas."
+    />
+  </div>
+</BaseLayout>
